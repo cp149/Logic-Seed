@@ -18,20 +18,18 @@ Ensure your system has the following before bootstrapping:
 |---|---|
 | **AI Agent** | A model with file-access tools (e.g., Gemini CLI). |
 | **tmux** | Required for persistent Senior sessions. |
-| **ollama** | (Optional) For running local lightweight Junior models. |
+| **ollama** | (Optional) For running local lightweight models. |
 | **python3** | The engine for the collaboration logic. |
 
 ---
 
 ## 🛠️ How to Bootstrap
 
-To bring your AI team to life, follow these 3 steps:
+To bring your AI team to life, simply give this instruction to your **AI Agent**:
 
-1.  **Prepare**: Create a new empty directory for your project and open your **AI Agent**.
-2.  **Seed**: Copy the **[BOOTSTRAP PROMPT]** found at the top of [BLUEPRINT.md](./BLUEPRINT.md).
-3.  **Execute**: Paste the prompt into your Agent. 
+> **"Read [BLUEPRINT.md](./BLUEPRINT.md) and implement the system described there."**
 
-Your Agent will then automatically write the core files into a `collab/` directory. Once finished, you can immediately start using the `collab` command to build your system.
+Your Agent will autonomously parse the protocol, ask for your preferred deployment mode (LOCAL or GLOBAL), and self-construct the entire engineering hub in seconds.
 
 ---
 
