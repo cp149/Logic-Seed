@@ -23,13 +23,13 @@ Ensure your system has the following before bootstrapping:
 
 ---
 
-## 🛠️ How to Bootstrap
+## 🛠️ How to Initialize
 
-To bring your AI team to life, simply give this instruction to your **AI Agent**:
+To bring your AI team to life, simply point your **AI Agent** (e.g., Gemini CLI) to this directory and say:
 
-> **"Read [BLUEPRINT.md](./BLUEPRINT.md) and implement the system described there."**
+> **"Initialize the project according to [BLUEPRINT.md](./BLUEPRINT.md)."**
 
-Your Agent will autonomously parse the protocol, ask for your preferred deployment mode (LOCAL or GLOBAL), and self-construct the entire engineering hub in seconds.
+Your Agent will autonomously parse the protocol, ask for your preferred deployment mode (LOCAL or GLOBAL), and self-construct the entire engineering hub.
 
 ---
 
