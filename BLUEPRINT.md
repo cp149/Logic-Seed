@@ -1,50 +1,41 @@
-# 🤖 Logic-Seed: Autonomous Initialization Protocol (v1.1)
+# 🤖 Logic-Seed: The Self-Explaining Logic Protocol (v3.1)
 
-**PROTOCOL STATUS**: ACTIVE
-**TARGET AGENT**: Any AI Agent with File-System access and Shell execution tools.
-
----
-
-## 🛠️ 1. Engineering Mission: The "Golden Triangle" Architecture
-
-Initialize an **Autonomous AI Co-Engineering System**. You are required to implement a robust, multi-model orchestrator with the following core components:
-
-### A. Universal Tool Interface (The "Hand")
-Implement a standardized XML-based tool parser within the `ModelDaemon` (`core/claude_daemon.py`). Both Senior and Junior models MUST use these tags to interact with the filesystem:
-- `<read_file path="..."/>`: Reads file content.
-- `<write_file path="...">CONTENT</write_file>`: Saves content to disk.
-- `<list_dir path="..."/>`: Lists directory contents.
-- **Safety Requirement**: Every path MUST be resolved to its absolute form and checked against the project root. Block any operation attempting to escape the workspace or modify the `tests/` directory.
-
-### B. Intelligent Coordinator (`core/coordinator.py`)
-Implement a high-order orchestrator that manages the development lifecycle:
-- **Role Routing**: Dispatch complex architectural tasks to the **Senior** model (e.g., Opus) and atomic tasks/boilerplate to the **Junior** model (e.g., local 1.7B).
-- **Auto-Escalation**: If the Junior model fails (timeout, empty response, or syntax error), automatically escalate to the Senior model.
-- **Cognitive Injection**: Before each Junior task, read the last 3 entries from `docs/junior_handbook.md` and prepend them as "Past Lessons" to prevent repeated mistakes.
-- **Environment Persistence**: Ensure the daemon inherits the exact same Python interpreter (`sys.executable`) used by the Coordinator.
-
-### C. System Protectors
-- **EditGate (`core/edit_gate.py`)**: A permission-logic module. Lightweight models are forbidden from modifying core architecture files (`coordinator.py`, `config.py`) or large files (>300 lines).
-- **ImpactAnalyzer (`core/impact_analyzer.py`)**: A dependency scanner using `grep`. Before any write operation, calculate the "blast radius." If a change impacts > 5 files, force the Senior model to take over.
+**CORE MISSION**: "Abandon the concept of Code Review. The implementation must explain its own success and branch logic through logs across diverse inputs."
 
 ---
 
-## 📜 2. The LDV (Log-Driven Verification) Protocol
+## 🛠️ 1. Engineering Foundation
 
-The system MUST enforce a "Narrative over Review" workflow:
-1.  **Structural Logging**: Every generated function must include `[STEP]` logs at logical branches.
-2.  **Verification Loop**: 
-    - The Agent runs the implementation's test.
-    - Standard output is redirected to `.collab/tmp/ldv.log`.
-    - The Junior model is commanded: *"Use `<read_file>` to examine the log and narrate exactly what the program did."*
-3.  **Acceptance**: Compare the Junior's narration against the original Spec. If the "Student" understands the logic, the "Senior's" code is accepted.
+Initialize an **Autonomous AI Co-Engineering System**. The construction must adhere to these technical mandates:
+
+### Pillar A: Environment Robustness
+- **Requirement**: The system's daemon processes MUST use `sys.executable` to inherit the exact host environment (Conda/venv) from which it was launched.
+
+### Pillar B: Universal IO Protocol
+- **Implementation**: Standardize XML tags: `<read_file/>`, `<write_file>`, and `<list_dir/>` for all filesystem operations.
 
 ---
 
-## 🚀 3. Implementation Instructions
+## 📜 2. The LDV (Log-Driven Verification) Standard
 
-1.  **Deployment Choice**: Ask the user: "LOCAL (isolated in current dir) or GLOBAL (installed as a system skill)?"
-2.  **Concurrency**: Use `fcntl.flock` for atomic locking on all task and state files.
-3.  **Self-Bootstrapping**: Upon understanding this protocol, generate the entire `collab/` directory structure, a `README_PROJECT.md` for the new system, and a `collab` CLI alias.
+This replaces manual code review. The proof of correctness lies in the **Narrative Consistency**.
 
-**Agent: Confirm the architecture, resolve dependencies, and commence construction.**
+### Step 1: Self-Explaining Branches
+The Senior model must implement code that emits structured `[STEP]` and `[DECISION]` logs. These logs must uniquely identify every logical path (Success, Failures, Guards).
+
+### Step 2: Multi-Input Stress Narrative
+1.  **Input Variety**: Run the code against **multiple parameter sets** (Normal, Boundary, Malformed).
+2.  **Log Redirection**: All execution logs must be saved to `.collab/tmp/ldv.log`.
+3.  **The Junior Probe**: The Junior model (1.7B) is commanded to use `<read_file>` to examine the collective logs.
+4.  **Verification**: 
+    - The Junior must explain **how the logic changed** between different inputs (e.g., "In set A it transferred funds, but in set B it hit the guard because the amount was negative").
+    - **Pass**: If the Junior's narrative correctly maps the input changes to the resulting log changes, the code is "Self-Explaining" and accepted.
+    - **Fail**: If the logs are identical or ambiguous across different inputs, the Senior must refactor.
+
+---
+
+## 🚀 3. Initialization
+1.  **Bootstrap**: Build the `collab/` core.
+2.  **Default Path**: Configure the system such that "Verification" always triggers the Junior-led Narrative Probe.
+
+**Agent: Logic is only true if it can be narrated under pressure. Build now.**
